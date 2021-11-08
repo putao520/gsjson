@@ -1,4 +1,4 @@
-package ourjson
+package gsjson
 
 func inputConvert(val interface{}) interface{} {
 	var r interface{}

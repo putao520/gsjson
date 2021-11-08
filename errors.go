@@ -1,4 +1,4 @@
-package ourjson
+package gsjson
 
 import (
 	"errors"

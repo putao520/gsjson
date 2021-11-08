@@ -1,6 +1,6 @@
 //
 
-package ourjson
+package gsjson
 
 import (
 	"strconv"

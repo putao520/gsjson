@@ -1,18 +1,18 @@
-# ourjson
+# gsjson
 
-Ourjson is an easy to use JSON library for go. It is designed just like [Fastjson in Java](https://github.com/alibaba/fastjson).
+gsjson is an easy to use JSON library for go. It is designed just like [Fastjson in Java](https://github.com/alibaba/fastjson).
 
 ## Install
 
 ```shell
-go get github.com/putao520/ourjson
+go get github.com/putao520/gsjson
 ```
 
 ## Import
 
 ```go
 import (
-  "github.com/putao520/ourjson"
+  "github.com/putao520/gsjson"
 )
 ```
 
@@ -70,7 +70,7 @@ package main
 
 import (
   "fmt"
-  "github.com/putao520/ourjson"
+  "github.com/putao520/gsjson"
 )
 
 func main() {
@@ -104,7 +104,7 @@ func main() {
 		}
 	}
 	`
-	jsonObject, err := ourjson.ParseObject(jsonStr)
+	jsonObject, err := gsjson.ParseObject(jsonStr)
 	fmt.Println(jsonObject, err)
 
 	user := jsonObject.GetJsonObject("user")
@@ -148,13 +148,13 @@ func main() {
 
 	fmt.Println(user.ToString())
 
-	j := ourjson.New()
+	j := gsjson.New()
 	
-	j2 := ourjson.FromObject(j)
+	j2 := gsjson.FromObject(j)
 	
-	ja := ourjson.NewArray()
+	ja := gsjson.NewArray()
 	
-	ja2 := ourjson.FromArray(ja)
+	ja2 := gsjson.FromArray(ja)
 	
 	for k, v := range jsonObject.Values() {
 		fmt.Println("key:" + k)
