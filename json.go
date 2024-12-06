@@ -56,17 +56,25 @@ func ParseArray(jsonStr string) (*JsonArray, error) {
 //}
 
 func MapperObject[T any](j *JsonObject) (*T, error) {
+	return MapperObjectString[T](j.String())
+}
+
+func MapperArray[T any](j *JsonArray) (*[]T, error) {
+	return MapperArrayString[T](j.String())
+}
+
+func MapperObjectString[T any](s string) (*T, error) {
 	var result T
-	err := json.Unmarshal([]byte(j.String()), &result)
+	err := json.Unmarshal([]byte(s), &result)
 	if err != nil {
 		return nil, err
 	}
 	return &result, nil
 }
 
-func MapperArray[T any](j *JsonArray) (*[]T, error) {
+func MapperArrayString[T any](s string) (*[]T, error) {
 	var result []T
-	err := json.Unmarshal([]byte(j.String()), &result)
+	err := json.Unmarshal([]byte(s), &result)
 	if err != nil {
 		return nil, err
 	}
@@ -85,6 +93,14 @@ func StructObject[T any](j *T) (*JsonObject, error) {
 	return r, nil
 }
 
+func StructToString[T any](j *T) (string, error) {
+	r, err := StructObject(j)
+	if err != nil {
+		return "", err
+	}
+	return r.String(), nil
+}
+
 func StructArray[T any](j *T) (*JsonArray, error) {
 	jsonBytes, err := json.Marshal(j)
 	if err != nil {
@@ -95,4 +111,12 @@ func StructArray[T any](j *T) (*JsonArray, error) {
 		return nil, err
 	}
 	return r, nil
+}
+
+func StructArrayString[T any](j *T) (string, error) {
+	r, err := StructArray(j)
+	if err != nil {
+		return "", err
+	}
+	return r.String(), nil
 }
