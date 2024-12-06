@@ -134,3 +134,46 @@ func TestParseArray(t *testing.T) {
 	nArray.Replace(jsonArray)
 	fmt.Println(nArray.String())
 }
+
+type test1 struct {
+	Name      string `json:"name"`
+	Age       int    `json:"age"`
+	Timestamp int64  `json:"timestamp"`
+}
+
+func TestMapJson(t *testing.T) {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+		}
+	}()
+	jsonStr := `{
+		"name": "aa",
+		"age": 10,
+		"timestamp": 12222222222
+	}
+	`
+	j, _ := ParseObject(jsonStr)
+	structTest1, _ := MapperObject[test1](j)
+	fmt.Println(structTest1)
+
+	jsonArrayStr := `[{
+		"name": "aa",
+		"age": 10,
+		"timestamp": 12222222222
+	}, {
+		"name": "bb",
+		"age": 12,
+		"timestamp": 21111111111
+	}]
+	`
+	a, _ := ParseArray(jsonArrayStr)
+	structArrayTest1, _ := MapperArray[test1](a)
+	fmt.Println(structArrayTest1)
+
+	jo, _ := StructObject(structTest1)
+	println(jo.String())
+
+	ja, _ := StructArray(structArrayTest1)
+	println(ja.String())
+}

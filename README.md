@@ -61,6 +61,16 @@ balance, err := parentObject.GetJsonObject("user").GetJsonObject("account").GetF
 email, err := parentObject.GetJsonObject("user").GetJsonArray("emails").GetString(0)
 ```
 
+### JsonObject map to Struct
+```go
+testStruct, _ := MapperObject[StructName](jsonObject)
+testStructArray, _ := MapperArray[StructName](jsonArray)
+```
+### Struct map to JsonObject
+```go
+jsonObject, _ := StructObject(testStruct)
+jsonArray _ := StructArray(testStructArray)
+```
 
 ## Example
 
